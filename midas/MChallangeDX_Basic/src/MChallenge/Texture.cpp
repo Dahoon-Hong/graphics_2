@@ -38,10 +38,15 @@ ID3D11ShaderResourceView* CTexture::GetTexture()
 	return m_pShaderResourceView;
 }
 
+ID3D11ShaderResourceView* CTexture::GetShaderResourceView() 
+{
+	return m_pShaderResourceView;
+}
+
 bool CTexture::BindTexture( ID3D11DeviceContext* deviceContext , int SlotNum )
 {
 	if( m_pShaderResourceView != nullptr )
-	deviceContext->PSSetShaderResources( SlotNum ,1, &(m_pShaderResourceView ));
+		deviceContext->PSSetShaderResources( SlotNum ,1, &(m_pShaderResourceView ));
 
 	return true;
 }

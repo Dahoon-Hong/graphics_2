@@ -32,8 +32,11 @@ struct TShaderParamMaterialProperty
 	XMFLOAT4  vDiffuse;        
 	XMFLOAT4  vSpecular;       
 	float	  fShininess;
-	float	  fPadding[3];
+	int		  iStoreTex;
+	float	  fPadding[2];
 };
+
+
 
 struct TSceneInfo
 {

@@ -26,8 +26,25 @@ cbuffer cbMaterialProperties : register( b2 )
    float4  Specular;       // 16 bytes
    float	Shininess;		// 4 bytes
    //16 bytes 단위로 Packing 하기 위한 Padding
-   float	Padding[3];
+   int		isStoreTex;
+   float	Padding[2];
 };
+
+SamplerState MeshTextureSampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+
+Texture2D shaderAlphaTexture	: register( t0 );
+Texture2D shaderAmbientTexture	: register( t1 );
+Texture2D shaderDiffuseTexture	: register( t2 );
+Texture2D shaderSpecularTexture	: register( t3 );
+Texture2D shaderNormalTexture	: register( t4 );
+
+
 struct VS_INPUT
 {
     float3 Pos          : POSITION;         //position
@@ -69,6 +86,29 @@ float4 PS( PS_INPUT input) : SV_Target
 	float4 baseDiffuse = float4( 1.0, 1.0, 1.0, 1.0 );
 	float4 baseSpecular = float4( 1.0, 1.0, 1.0, 1.0 );
 
+
+	if(isStoreTex & 1) // Alpha
+	{
+		//outputColor += float4(0.1f, 0.0f, 0.0f, 0.0f);
+	}
+	if(isStoreTex & 2) // Ambient
+	{
+		shaderAmbientTexture.Sampler( baseAmbient. MeshTextureSampler);
+	}
+	if(isStoreTex & 4) // Diffuse
+	{
+		outputColor += float4(0.0f, 0.0f, 0.0f, 0.0f);
+	}
+	if(isStoreTex & 8) // Specular
+	{
+		outputColor += float4(10.0f, 0.0f, 10.0f, 0.0f);
+	}
+	if(isStoreTex & 16) // Normal
+	{
+		outputColor += float4(10.0f, 0.0f, 10.0f, 0.0f);
+	}
+
+
 	float4 outputColor;
 
  	float3 Normal = normalize(input.eyeNorm);
@@ -92,6 +132,9 @@ float4 PS( PS_INPUT input) : SV_Target
 	// Premultiplied alpha blending
 	outputColor.rgb = finalColor.rgb;
     outputColor.a = 1;
+
+
+
 
 	return outputColor;
 }
