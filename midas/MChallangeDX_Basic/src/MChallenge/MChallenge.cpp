@@ -5,63 +5,63 @@
 #include "MChallenge.h"
 
 bool CALLBACK IsD3D11DeviceAcceptable( const CD3D11EnumAdapterInfo *AdapterInfo, UINT Output, const CD3D11EnumDeviceInfo *DeviceInfo,
-                                       DXGI_FORMAT BackBufferFormat, bool bWindowed, void* pUserContext )
+									  DXGI_FORMAT BackBufferFormat, bool bWindowed, void* pUserContext )
 {
-    return true;
+	return true;
 }
 bool CALLBACK ModifyDeviceSettings( DXUTDeviceSettings* pDeviceSettings, void* pUserContext )
 {
-    return true;
+	return true;
 }
 HRESULT CALLBACK OnD3D11CreateDevice( ID3D11Device* pd3dDevice, const DXGI_SURFACE_DESC* pBackBufferSurfaceDesc,
-                                      void* pUserContext )
+									 void* pUserContext )
 {
-    HRESULT hr = S_OK;
-    auto pd3dImmediateContext = DXUTGetD3D11DeviceContext();
-    DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+	HRESULT hr = S_OK;
+	auto pd3dImmediateContext = DXUTGetD3D11DeviceContext();
+	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 
 	g_DialogResourceManager.OnD3D11CreateDevice( pd3dDevice, pd3dImmediateContext );
 
 	// Compile the vertex shader
-    ID3DBlob* pVSBlob = nullptr;
-    DXUTCompileFromFile( L"Phong.fx", nullptr, "VS", "vs_4_0", dwShaderFlags, 0, &pVSBlob ) ;
+	ID3DBlob* pVSBlob = nullptr;
+	DXUTCompileFromFile( L"Phong.fx", nullptr, "VS", "vs_4_0", dwShaderFlags, 0, &pVSBlob ) ;
 
-    // Create the vertex shader
-    hr = pd3dDevice->CreateVertexShader( pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), nullptr, &g_pVertexShader );
-    if( FAILED( hr ) )
-    {    
-        SAFE_RELEASE( pVSBlob );
-        return hr;
-    }
+	// Create the vertex shader
+	hr = pd3dDevice->CreateVertexShader( pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), nullptr, &g_pVertexShader );
+	if( FAILED( hr ) )
+	{    
+		SAFE_RELEASE( pVSBlob );
+		return hr;
+	}
 
-    // Define the input layout
-    D3D11_INPUT_ELEMENT_DESC layout[] =
-    {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        { "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-    };
-    UINT numElements = ARRAYSIZE( layout );
+	// Define the input layout
+	D3D11_INPUT_ELEMENT_DESC layout[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	};
+	UINT numElements = ARRAYSIZE( layout );
 
-    // Create the input layout
-    hr = pd3dDevice->CreateInputLayout( layout, numElements, pVSBlob->GetBufferPointer(),
-                                        pVSBlob->GetBufferSize(), &g_pVertexLayout );
-    SAFE_RELEASE( pVSBlob );
-    if( FAILED( hr ) )
-        return hr;
+	// Create the input layout
+	hr = pd3dDevice->CreateInputLayout( layout, numElements, pVSBlob->GetBufferPointer(),
+		pVSBlob->GetBufferSize(), &g_pVertexLayout );
+	SAFE_RELEASE( pVSBlob );
+	if( FAILED( hr ) )
+		return hr;
 
-    // Set the input layout
-    pd3dImmediateContext->IASetInputLayout( g_pVertexLayout );
+	// Set the input layout
+	pd3dImmediateContext->IASetInputLayout( g_pVertexLayout );
 
-    // Compile the pixel shader
-    ID3DBlob* pPSBlob  = nullptr;
-    V_RETURN( DXUTCompileFromFile( L"Phong.fx", nullptr, "PS", "ps_4_0", dwShaderFlags, 0, &pPSBlob  ) );
+	// Compile the pixel shader
+	ID3DBlob* pPSBlob  = nullptr;
+	V_RETURN( DXUTCompileFromFile( L"Phong.fx", nullptr, "PS", "ps_4_0", dwShaderFlags, 0, &pPSBlob  ) );
 
-    // Create the pixel shader
-    hr = pd3dDevice->CreatePixelShader( pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), nullptr, &g_pPixelShader );
-    SAFE_RELEASE( pPSBlob );
-    if( FAILED( hr ) )
-        return hr;
+	// Create the pixel shader
+	hr = pd3dDevice->CreatePixelShader( pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), nullptr, &g_pPixelShader );
+	SAFE_RELEASE( pPSBlob );
+	if( FAILED( hr ) )
+		return hr;
 
 	for( int i = 0 ; i < MODEL_COUNT; i++ )
 	{
@@ -71,27 +71,27 @@ HRESULT CALLBACK OnD3D11CreateDevice( ID3D11Device* pd3dDevice, const DXGI_SURFA
 			g_arSceneModel[i].MakeVBOInfo();
 	}
 
-   // Create the constant buffers
-    D3D11_BUFFER_DESC bd;
-    ZeroMemory( &bd, sizeof(bd) );
-    bd.Usage = D3D11_USAGE_DYNAMIC;
-    bd.ByteWidth = sizeof(TShaderParamEveryFrame);
-    bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-    V_RETURN( pd3dDevice->CreateBuffer( &bd, nullptr, &g_pBChangesEveryFrame ) );
+	// Create the constant buffers
+	D3D11_BUFFER_DESC bd;
+	ZeroMemory( &bd, sizeof(bd) );
+	bd.Usage = D3D11_USAGE_DYNAMIC;
+	bd.ByteWidth = sizeof(TShaderParamEveryFrame);
+	bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	V_RETURN( pd3dDevice->CreateBuffer( &bd, nullptr, &g_pBChangesEveryFrame ) );
 
-    bd.ByteWidth = sizeof(TShaderParamNeverChanges);
-    V_RETURN( pd3dDevice->CreateBuffer( &bd, nullptr, &g_pBNeverChanges ) );
+	bd.ByteWidth = sizeof(TShaderParamNeverChanges);
+	V_RETURN( pd3dDevice->CreateBuffer( &bd, nullptr, &g_pBNeverChanges ) );
 
 	bd.ByteWidth = sizeof(TShaderParamMaterialProperty);
 	V_RETURN( pd3dDevice->CreateBuffer( &bd, nullptr, &g_pBMaterialProperty ) );
 
-    D3D11_MAPPED_SUBRESOURCE MappedResource;
-    V( pd3dImmediateContext->Map( g_pBNeverChanges, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource ) );
-    auto pCB = reinterpret_cast<TShaderParamNeverChanges*>( MappedResource.pData );
+	D3D11_MAPPED_SUBRESOURCE MappedResource;
+	V( pd3dImmediateContext->Map( g_pBNeverChanges, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource ) );
+	auto pCB = reinterpret_cast<TShaderParamNeverChanges*>( MappedResource.pData );
 	pCB->vLightDir = g_tSceneInfo.vLightPos;
 
-    pd3dImmediateContext->Unmap( g_pBNeverChanges , 0 );
+	pd3dImmediateContext->Unmap( g_pBNeverChanges , 0 );
 
 	// Setup the camera's view parameters
 	TCameraInfo* tCameraInfo = g_UIEventHandler.GetCameraInfo();
@@ -103,10 +103,10 @@ HRESULT CALLBACK OnD3D11CreateDevice( ID3D11Device* pd3dDevice, const DXGI_SURFA
 }
 
 HRESULT CALLBACK OnD3D11ResizedSwapChain( ID3D11Device* pd3dDevice, IDXGISwapChain* pSwapChain,
-                                          const DXGI_SURFACE_DESC* pBackBufferSurfaceDesc, void* pUserContext )
+										 const DXGI_SURFACE_DESC* pBackBufferSurfaceDesc, void* pUserContext )
 {
-    // Setup the projection parameters
-    float fAspect = static_cast<float>( pBackBufferSurfaceDesc->Width ) / static_cast<float>( pBackBufferSurfaceDesc->Height );
+	// Setup the projection parameters
+	float fAspect = static_cast<float>( pBackBufferSurfaceDesc->Width ) / static_cast<float>( pBackBufferSurfaceDesc->Height );
 
 	g_UIEventHandler.GetCameraInfo()->SetProjectionInfo( XM_PI * 0.25f, fAspect, 1.0f, 10000.0f );
 	g_UIEventHandler.Initialize( pBackBufferSurfaceDesc->Width, pBackBufferSurfaceDesc->Height );
@@ -114,14 +114,14 @@ HRESULT CALLBACK OnD3D11ResizedSwapChain( ID3D11Device* pd3dDevice, IDXGISwapCha
 	g_DialogResourceManager.OnD3D11ResizedSwapChain( pd3dDevice, pBackBufferSurfaceDesc );
 	g_Dialog.SetLocation( pBackBufferSurfaceDesc->Width - 200, pBackBufferSurfaceDesc->Height - 720 );
 	g_Dialog.SetSize( 245, 520 );
-    return S_OK;
+	return S_OK;
 }
 
 void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, void* pUserContext )
 {
 	switch( nControlID )
 	{
-	// Combo Box 클릭
+		// Combo Box 클릭
 	case IDC_COMBO_OBJLIST:
 		{
 			g_nCurModelIdx = ((CDXUTComboBox*)pControl)->GetSelectedIndex();
@@ -134,15 +134,15 @@ void CALLBACK OnFrameMove( double fTime, float fElapsedTime, void* pUserContext 
 }
 
 void CALLBACK OnD3D11FrameRender( ID3D11Device* pd3dDevice, ID3D11DeviceContext* pd3dImmediateContext,
-                                  double fTime, float fElapsedTime, void* pUserContext )
+								 double fTime, float fElapsedTime, void* pUserContext )
 {
-    // Clear the back buffer
-    auto pRTV = DXUTGetD3D11RenderTargetView();
-    pd3dImmediateContext->ClearRenderTargetView( pRTV, Colors::White );
+	// Clear the back buffer
+	auto pRTV = DXUTGetD3D11RenderTargetView();
+	pd3dImmediateContext->ClearRenderTargetView( pRTV, Colors::White );
 
-    // Clear the depth stencil
-    auto pDSV = DXUTGetD3D11DepthStencilView();
-    pd3dImmediateContext->ClearDepthStencilView( pDSV, D3D11_CLEAR_DEPTH, 1.0, 0 );
+	// Clear the depth stencil
+	auto pDSV = DXUTGetD3D11DepthStencilView();
+	pd3dImmediateContext->ClearDepthStencilView( pDSV, D3D11_CLEAR_DEPTH, 1.0, 0 );
 
 	RenderModel( pd3dImmediateContext );
 	g_Dialog.OnRender( fElapsedTime );
@@ -156,17 +156,17 @@ void CALLBACK OnD3D11ReleasingSwapChain( void* pUserContext )
 void CALLBACK OnD3D11DestroyDevice( void* pUserContext )
 {
 	g_DialogResourceManager.OnD3D11DestroyDevice();
-    DXUTGetGlobalResourceCache().OnDestroyDevice();
+	DXUTGetGlobalResourceCache().OnDestroyDevice();
 
-    SAFE_RELEASE( g_pVertexLayout );
-    SAFE_RELEASE( g_pVertexShader );
-    SAFE_RELEASE( g_pPixelShader );
-    SAFE_RELEASE( g_pBNeverChanges );
-    SAFE_RELEASE( g_pBChangesEveryFrame );
+	SAFE_RELEASE( g_pVertexLayout );
+	SAFE_RELEASE( g_pVertexShader );
+	SAFE_RELEASE( g_pPixelShader );
+	SAFE_RELEASE( g_pBNeverChanges );
+	SAFE_RELEASE( g_pBChangesEveryFrame );
 	SAFE_RELEASE( g_pBMaterialProperty );
 
 	for( int i = 0; i < MODEL_COUNT; i++ )
-	 	g_arSceneModel[i].ReleaseBuffer();
+		g_arSceneModel[i].ReleaseBuffer();
 }
 
 LRESULT OnMouse( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
@@ -194,7 +194,7 @@ void CALLBACK OnKeyboard( UINT nChar, bool bKeyDown, bool bAltDown, void* pUserC
 
 bool CALLBACK OnDeviceRemoved( void* pUserContext )
 {
-    return true;
+	return true;
 }
 
 // UI 초기화
@@ -215,7 +215,7 @@ void InitUI()
 		pCombo->SetSelectedByIndex( 0 );
 	}
 }
- void RenderModel(ID3D11DeviceContext* deviceContext)
+void RenderModel(ID3D11DeviceContext* deviceContext)
 {
 	// Get the projection & view matrix from the camera class
 	XMVECTORF32 AxisX = { 1,0,0 }; XMVECTORF32 AxisY = { 0,1,0 };
@@ -242,7 +242,7 @@ void InitUI()
 	XMStoreFloat4x4( &pCB->mWorldViewProj, XMMatrixTranspose( mWorldViewProjection ) );
 	XMStoreFloat4x4( &pCB->mWorld, XMMatrixTranspose( mWorld ) );
 	XMStoreFloat4x4( &pCB->mWorldView, XMMatrixTranspose( mWorldView ) );
-	
+
 	//Camera Pos
 	pCB->vEye.x = tCameraInfo->vPos.x;	pCB->vEye.y = tCameraInfo->vPos.y;
 	pCB->vEye.z = tCameraInfo->vPos.z;	pCB->vEye.w = 1.0f;
@@ -256,87 +256,128 @@ void InitUI()
 
 	return;
 }
- void RenderModelInstList(ID3D11DeviceContext* deviceContext, std::vector < TVBOInfo* > arInstList  )
- {
-	 unsigned int stride = sizeof(TDrawVertexType); 
-	 unsigned int offset = 0;
-	 std::map< TVBOInfo*, TMaterialInfo* > pTMaterialMap = g_arSceneModel[g_nCurModelIdx].GetMeshMaterialMap();
+void RenderModelInstList(ID3D11DeviceContext* deviceContext, std::vector < TVBOInfo* > arInstList  )
+{
+	unsigned int stride = sizeof(TDrawVertexType); 
+	unsigned int offset = 0;
+	std::map< TVBOInfo*, TMaterialInfo* > pTMaterialMap = g_arSceneModel[g_nCurModelIdx].GetMeshMaterialMap();
 
-	 for( int i = 0 ; i < arInstList.size(); i++ )
-	 {
-		 deviceContext->RSSetState(g_arSceneModel[g_nCurModelIdx].GetRasterStateBuffer());
-		 float BlendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
-		 deviceContext->OMSetBlendState(g_arSceneModel[g_nCurModelIdx].GetBlendStateBuffer(), BlendFactor, 0xFFFFFFFF );
-		 // Set the vertex buffer to active in the input assembler so it can be rendered.
-		 TVBOInfo * pVBO = arInstList.at(i);
+	for( int i = 0 ; i < arInstList.size(); i++ )
+	{
+		deviceContext->RSSetState(g_arSceneModel[g_nCurModelIdx].GetRasterStateBuffer());
+		float BlendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+		deviceContext->OMSetBlendState(g_arSceneModel[g_nCurModelIdx].GetBlendStateBuffer(), BlendFactor, 0xFFFFFFFF );
+		// Set the vertex buffer to active in the input assembler so it can be rendered.
+		TVBOInfo * pVBO = arInstList.at(i);
 
-		 ID3D11Buffer * vertexbuffer = arInstList.at(i)->VertexBuffer;
-		 ID3D11Buffer * indexbuffer = arInstList.at(i)->IndexBuffer;
+		ID3D11Buffer * vertexbuffer = arInstList.at(i)->VertexBuffer;
+		ID3D11Buffer * indexbuffer = arInstList.at(i)->IndexBuffer;
 
-		 // Material 연결
-		 TMaterialInfo * pTMaterial = pTMaterialMap.at( pVBO );
+		// Material 연결
+		TMaterialInfo * pTMaterial = pTMaterialMap.at( pVBO );
 
-		 HRESULT hr;
-		 D3D11_MAPPED_SUBRESOURCE MappedResource;
-		 V( deviceContext->Map( g_pBMaterialProperty , 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource ) );
-		 auto pCB = reinterpret_cast<TShaderParamMaterialProperty*>( MappedResource.pData );
-		 pCB->vAmbient = pTMaterial->Emissive;
-		 pCB->vAmbient = pTMaterial->Ambient;
-		 pCB->vDiffuse = pTMaterial->Diffuse;
-		 pCB->vSpecular = pTMaterial->Specular;
-		 pCB->fShininess = pTMaterial->Shininess;
-		 deviceContext->Unmap( g_pBMaterialProperty , 0 );
+		int iStoreTex = 0;
+		ID3D11ShaderResourceView* pSRV = NULL;
+		if(pTMaterial->pAlphaTex != NULL)
+		{
+			iStoreTex +=1;
 
-		 // Buffer 연결
-		 deviceContext->IASetVertexBuffers(0, 1, &vertexbuffer, &stride, &offset);
-		 deviceContext->IASetIndexBuffer(indexbuffer, DXGI_FORMAT_R32_UINT, 0);
+			pSRV = pTMaterial->pAlphaTex->GetShaderResourceView();
+			deviceContext->PSSetShaderResources( 0, 1,  &pSRV);
+		}
+		if(pTMaterial->pAmbientTex != NULL)
+		{
+			iStoreTex +=2;
+			pSRV = pTMaterial->pAmbientTex->GetShaderResourceView();
+			deviceContext->PSSetShaderResources( 1, 1,  &pSRV);
+		}
+		if(pTMaterial->pDiffuseTex != NULL)
+		{
+			iStoreTex +=4;
+			pSRV = pTMaterial->pDiffuseTex->GetShaderResourceView();
+			deviceContext->PSSetShaderResources( 2, 1,  &pSRV);
+		}
+		if(pTMaterial->pSpecTex != NULL)
+		{
+			iStoreTex +=8;
+			pSRV = pTMaterial->pSpecTex->GetShaderResourceView();
+			deviceContext->PSSetShaderResources( 3, 1,  &pSRV);
+		}
+		if(pTMaterial->pNormalTex != NULL)
+		{
+			iStoreTex +=16;
+			pSRV =  pTMaterial->pNormalTex->GetShaderResourceView();
+			deviceContext->PSSetShaderResources( 4, 1, &pSRV);
+		}
 
-		 deviceContext->VSSetShader( g_pVertexShader, nullptr, 0 );
-		 deviceContext->VSSetConstantBuffers( 0, 1, &g_pBNeverChanges );
-		 deviceContext->VSSetConstantBuffers( 1, 1, &g_pBChangesEveryFrame );
-		 deviceContext->VSSetConstantBuffers( 2, 1, &g_pBMaterialProperty );
 
-		 deviceContext->PSSetShader( g_pPixelShader, nullptr, 0 );
-		 deviceContext->PSSetConstantBuffers( 0, 1, &g_pBNeverChanges );
-		 deviceContext->PSSetConstantBuffers( 1, 1, &g_pBChangesEveryFrame );
-		 deviceContext->PSSetConstantBuffers( 2, 1, &g_pBMaterialProperty );
+		HRESULT hr;
+		D3D11_MAPPED_SUBRESOURCE MappedResource;
+		V( deviceContext->Map( g_pBMaterialProperty , 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource ) );
+		auto pCB = reinterpret_cast<TShaderParamMaterialProperty*>( MappedResource.pData );
+		pCB->vEmissive = pTMaterial->Emissive;
+		pCB->vAmbient = pTMaterial->Ambient;
+		pCB->vDiffuse = pTMaterial->Diffuse;
+		pCB->vSpecular = pTMaterial->Specular;
+		pCB->fShininess = pTMaterial->Shininess;
+		pCB->iStoreTex	= iStoreTex;
+		deviceContext->Unmap( g_pBMaterialProperty , 0 );
 
-		 // 	// Set the type of primitive that should be rendered from this vertex buffer, in this case triangles.
-		 deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		 deviceContext->DrawIndexed( ( UINT )pVBO->nIdxCount, 0, ( UINT )0);
-	 }
- }
+		// Buffer 연결
+		deviceContext->IASetVertexBuffers(0, 1, &vertexbuffer, &stride, &offset);
+		deviceContext->IASetIndexBuffer(indexbuffer, DXGI_FORMAT_R32_UINT, 0);
 
- int main( )
- {
-	 g_nCurModelIdx = 0;
+		deviceContext->VSSetShader( g_pVertexShader, nullptr, 0 );
+		deviceContext->VSSetConstantBuffers( 0, 1, &g_pBNeverChanges );
+		deviceContext->VSSetConstantBuffers( 1, 1, &g_pBChangesEveryFrame );
+		deviceContext->VSSetConstantBuffers( 2, 1, &g_pBMaterialProperty );
 
-	 // Set general DXUT callbacks
-	 DXUTSetCallbackFrameMove( OnFrameMove );
-	 DXUTSetCallbackKeyboard( OnKeyboard );
-	 DXUTSetCallbackMsgProc( MsgProc );
-	 DXUTSetCallbackDeviceChanging( ModifyDeviceSettings );
-	 DXUTSetCallbackDeviceRemoved( OnDeviceRemoved );
+		deviceContext->PSSetShader( g_pPixelShader, nullptr, 0 );
+		deviceContext->PSSetConstantBuffers( 0, 1, &g_pBNeverChanges );
+		deviceContext->PSSetConstantBuffers( 1, 1, &g_pBChangesEveryFrame );
+		deviceContext->PSSetConstantBuffers( 2, 1, &g_pBMaterialProperty );
 
-	 // Set the D3D11 DXUT callbacks. Remove these sets if the app doesn't need to support D3D11
-	 DXUTSetCallbackD3D11DeviceAcceptable( IsD3D11DeviceAcceptable );
-	 DXUTSetCallbackD3D11DeviceCreated( OnD3D11CreateDevice );
-	 DXUTSetCallbackD3D11SwapChainResized( OnD3D11ResizedSwapChain );
-	 DXUTSetCallbackD3D11FrameRender( OnD3D11FrameRender );
-	 DXUTSetCallbackD3D11SwapChainReleasing( OnD3D11ReleasingSwapChain );
-	 DXUTSetCallbackD3D11DeviceDestroyed( OnD3D11DestroyDevice );
 
-	 // Perform any application-level initialization here
-	 InitUI();
-	 DXUTInit( true, true, nullptr ); // Parse the command line, show msgboxes on error, no extra command line params
-	 DXUTSetCursorSettings( true, true ); // Show the cursor and clip it when in full screen
-	 DXUTCreateWindow( L"Midas Challenge 3D Model Viewer" );
 
-	 // Only require 10-level hardware or later
-	 DXUTCreateDevice( D3D_FEATURE_LEVEL_10_0, true, 1024, 768 );
-	 DXUTMainLoop(); // Enter into the DXUT render loop
 
-	 // Perform any application-level cleanup here
-	 return DXUTGetExitCode();
- }
+
+		// 	// Set the type of primitive that should be rendered from this vertex buffer, in this case triangles.
+		deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		deviceContext->DrawIndexed( ( UINT )pVBO->nIdxCount, 0, ( UINT )0);
+	}
+}
+
+int main( )
+{
+	g_nCurModelIdx = 0;
+
+	// Set general DXUT callbacks
+	DXUTSetCallbackFrameMove( OnFrameMove );
+	DXUTSetCallbackKeyboard( OnKeyboard );
+	DXUTSetCallbackMsgProc( MsgProc );
+	DXUTSetCallbackDeviceChanging( ModifyDeviceSettings );
+	DXUTSetCallbackDeviceRemoved( OnDeviceRemoved );
+
+	// Set the D3D11 DXUT callbacks. Remove these sets if the app doesn't need to support D3D11
+	DXUTSetCallbackD3D11DeviceAcceptable( IsD3D11DeviceAcceptable );
+	DXUTSetCallbackD3D11DeviceCreated( OnD3D11CreateDevice );
+	DXUTSetCallbackD3D11SwapChainResized( OnD3D11ResizedSwapChain );
+	DXUTSetCallbackD3D11FrameRender( OnD3D11FrameRender );
+	DXUTSetCallbackD3D11SwapChainReleasing( OnD3D11ReleasingSwapChain );
+	DXUTSetCallbackD3D11DeviceDestroyed( OnD3D11DestroyDevice );
+
+	// Perform any application-level initialization here
+	InitUI();
+	DXUTInit( true, true, nullptr ); // Parse the command line, show msgboxes on error, no extra command line params
+	DXUTSetCursorSettings( true, true ); // Show the cursor and clip it when in full screen
+	DXUTCreateWindow( L"Midas Challenge 3D Model Viewer" );
+
+	// Only require 10-level hardware or later
+	DXUTCreateDevice( D3D_FEATURE_LEVEL_10_0, true, 1024, 768 );
+	DXUTMainLoop(); // Enter into the DXUT render loop
+
+	// Perform any application-level cleanup here
+	return DXUTGetExitCode();
+}
