@@ -60,6 +60,9 @@ struct TMaterialInfo
 	CTexture* pAlphaTex;
 	CTexture* pNormalTex;
 };
+
+
+
 struct TVBOInfo
 {
 	ID3D11Buffer *VertexBuffer;

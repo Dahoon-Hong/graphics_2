@@ -10,7 +10,11 @@ using namespace DirectX;
 
 struct TShaderParamNeverChanges
 {
-	XMFLOAT4 vLightDir;
+	// 빛의 위치 and 방향
+	XMFLOAT4 vLightDir[3];
+	// 빛의 컬러
+	XMFLOAT4 vLightColor[3];
+	//int vLightNum;
 };
 
 struct TShaderParamEveryFrame
@@ -35,11 +39,15 @@ struct TSceneInfo
 {
 	TSceneInfo()
 	{
-		vLightPos = XMFLOAT4(1.0f, 1.0f, -1.0f, 0.0f);
-		vGlobalAmbient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.f);
+		for(int i=0;i<10;i++)
+		{
+			vLightPos[i]=XMFLOAT4(0.0f,0.0f,0.0f,0.0f);
+			vGlobalAmbient[i] = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.f);
+		}
 	}
-	XMFLOAT4					vGlobalAmbient;
-	XMFLOAT4					vLightPos;
+	XMFLOAT4					vGlobalAmbient[10];
+	XMFLOAT4					vLightPos[10];
+	int vLightNum;
 };
 
 //--------------------------------------------------------------------------------------

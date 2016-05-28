@@ -89,7 +89,19 @@ HRESULT CALLBACK OnD3D11CreateDevice( ID3D11Device* pd3dDevice, const DXGI_SURFA
     D3D11_MAPPED_SUBRESOURCE MappedResource;
     V( pd3dImmediateContext->Map( g_pBNeverChanges, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource ) );
     auto pCB = reinterpret_cast<TShaderParamNeverChanges*>( MappedResource.pData );
-	pCB->vLightDir = g_tSceneInfo.vLightPos;
+	
+	g_tSceneInfo.vLightPos[0].x+=100.0f;
+	pCB->vLightDir[0] = g_tSceneInfo.vLightPos[0];
+	g_tSceneInfo.vLightPos[1].x-=100.0f;
+	pCB->vLightDir[1]=g_tSceneInfo.vLightPos[1];
+	g_tSceneInfo.vLightPos[2].z-=100.0f;
+	pCB->vLightDir[2]=g_tSceneInfo.vLightPos[2];
+	pCB->vLightColor[0]=g_tSceneInfo.vGlobalAmbient[0];
+	pCB->vLightColor[0].x=1.0f;
+	pCB->vLightColor[1]=g_tSceneInfo.vGlobalAmbient[1];
+	pCB->vLightColor[1].x=1.0f;
+	pCB->vLightColor[2]=g_tSceneInfo.vGlobalAmbient[2];
+	pCB->vLightColor[2].y=1.0f;
 
     pd3dImmediateContext->Unmap( g_pBNeverChanges , 0 );
 
@@ -280,6 +292,7 @@ void InitUI()
 		 D3D11_MAPPED_SUBRESOURCE MappedResource;
 		 V( deviceContext->Map( g_pBMaterialProperty , 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource ) );
 		 auto pCB = reinterpret_cast<TShaderParamMaterialProperty*>( MappedResource.pData );
+		 // 이곳에서 메터리얼 정보를 넘겨줌
 		 pCB->vAmbient = pTMaterial->Emissive;
 		 pCB->vAmbient = pTMaterial->Ambient;
 		 pCB->vDiffuse = pTMaterial->Diffuse;
