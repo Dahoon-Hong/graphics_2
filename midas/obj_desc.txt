@@ -1,0 +1,103 @@
+참고
+https://en.wikipedia.org/wiki/Wavefront_.obj_file
+
+# Wavefront (*.obj) 파일 포맷
+# 이 줄은 주석입니다.
+# 다음은 정점(Vertex) 좌표 데이터를 나타냅니다. 각 숫자는 좌표축 (x, y, z [,w])를 나타냅니다. w는 선택 사항이며 기본값은 1.0 입니다.
+v 0.123 0.234 0.345 1.0
+v 0.123 0.234 0.345
+
+# 다음은 텍스쳐 좌표(Texture coordinate) 데이터를 나타냅니다. 각 숫자는 좌표축 (u, v [,w])를 나타냅니다. 해당 값들은 0.0에서 1.0 사이이며, w는 선택사항으로 기본값은 0.0 입니다.
+vt 0.500 1 0
+vt 0.8 0.5
+
+# 다음은 법선 벡터(Normal) 데이터를 나타냅니다. 각 숫자는 좌표축 (x, y, z)를 나타냅니다. 해당 값들은 단위 벡터가 아닐 수 있습니다.
+vn 0.707 0.000 0.707
+
+# 다음은 폴리곤의 면(Face) 데이터를 나타냅니다. 한개의 정점(Vertex)에 대해 좌표, 텍스쳐 좌표, 법선 벡터 정보를 가질 수 있습니다.
+# 표기 방식은 다음과 같습니다.
+#      f    좌표Index/텍스쳐좌표Index/법선벡터Index    좌표Index/텍스쳐좌표Index /법선벡터Index    좌표Index /텍스쳐좌표Index /법선벡터Index ...
+# 한개의 면(Face)에는 1개 이상의 정점 정보가 있습니다. 1개는 점 요소, 2개는 직선 요소, 3개는 삼각형, 4개 이상은 임의의 폴리곤을 나타냅니다.
+# 다음은 정점(Vertex) 데이터만 갖는 경우 입니다.
+f 1 2 3
+# 다음은 정점(Vertex) 및 텍스쳐 좌표(Texture coordinate)를 갖는 경우 입니다.
+f 3/1 4/2 5/3
+# 다음은 정점(Vertex), 텍스쳐 좌표(Texture coordinate) 및 법선 벡터(Normal)를 갖는 경우 입니다.
+f 6/4/1 3/5/3 7/6/5
+# 다음은 정점(Vertex) 및 법선 벡터(Normal)를 갖는 경우 입니다.
+f 5//1 3//1 9//3
+
+# 다음은 각각의 메쉬 객체(Mesh Object)에 대한 재질(Material)을 표현하기 위한 부가 정보입니다.
+# 'mtllib 파일명.mtl' 을 사용하여 mtl 파일에 정의된 재질(Material) 정보를 불러옵니다.
+mtllib myobj.mtl
+
+# 다음은 mtl 파일에서 정의한 재질(Material)을 메쉬 객체(Mesh Object)에 부여하는 부분입니다.
+# 'usemtl 정의한재질명' 을 사용하여 하위 항목에 대해 정의된 재질(Material) 정보를 사용합니다.
+usemtl User_Defined_Material_Name
+
+# 다음은 각각의 폴리곤에 대하여 태그 정보를 부여하는 부분입니다.
+# 'o 객체명' 은 객체(Object)에 대한 이름 태그를 부여합니다.
+# 'g 그룹명' 은 하위 항목에 대해 그룹 태그를 부여합니다.
+o MyObjectName
+g MyGroupName
+
+
+
+# Material Template Library (*.mtl) 파일 포맷
+# 이 줄은 주석입니다.
+# 'newmtl 재질명' 을 사용하여 재질(Material)에 이름을 부여하고 새로 정의합니다.
+# 하위 항목으로 다음의 정보를 부여할 수 있습니다.
+# Ka : 주변광 색(Ambient Color)
+# Kd : 난반사광 색(Diffuse Color)
+# Ks : 전반사광 색(Specular Color)
+# Ns : 전반사광 지수 가중치(Specular exponent weight) - 하이라이트
+#     - 0에서 1000 사이
+# d : 불투명도(Dissolved)
+#     - 0.0은 투명한 것을 나타냄
+#     - 1.0이 불투명한 것을 나타냄
+# Tr : 투명도(Transparency)
+#     - 0.0은 불투명한 것을 나타냄
+#     - 1.0은 투명한 것을 나타냄
+# illum : 조명 모델
+#     0 : 색상(Color) 활성화 & 주변광 색(Ambient) 비활성화
+#     1 : 색상(Color) 활성화 & 주변광 색(Ambient) 활성화
+#     2 : 하이라이트 활성화
+#     3 : 반사(Reflection) 활성화 & 광선 추적(Ray trace) 활성화
+#     4 : 투명 처리 - 유리(Glass) 재질 활성화, 반사 처리 - 광선 추적(Ray trace) 활성화
+#     5 : 반사 처리 - 프레넬 방정식(Fresnel) 활성화 & 광선 추적(Ray trace) 활성화
+#     6 : 반사 처리 - 굴절(Refraction) 활성화, 반사 처리 - 프레넬 방정식(Fresnel) 비활성화 & 광선 추적(Ray trace) 활성화
+#     7 : 반사 처리 - 굴절(Refraction) 활성화, 반사 처리 - 프레넬 방정식(Fresnel) 활성화 & 광선 추적(Ray trace) 활성화
+#     8 : 반사 처리 활성화 & 광선 추적(Ray trace) 비활성화
+#     9 : 투명 처리 - 유리(Glass) 재질 활성화, 반사 처리 - 광선 추적(Ray trace) 비활성화
+#     10 : 보이지 않는 물체에 대한 그림자 처리
+# map_Ka : 주변광 색에 대한 텍스쳐 이미지
+# map_Kd : 난반사광 색에 대한 텍스쳐 이미지(일반적으로 map_Ka와 동일)
+# map_Ks : 전반사광 색에 대한 텍스쳐 이미지
+# map_Ns : 전반사광 지수 가중치 - 하이라이트에 대한 텍스쳐 이미지
+# map_d : 알파 처리에 대한 텍스쳐 이미지
+# map_bump : 범프(Bump) 또는 법선 벡터(Normal)에 대한 텍스쳐 이미지
+# bump : map_bump와 동일
+# disp : 변위(Displacement)에 대한 텍스쳐 이미지
+# decal : 스텐실 데칼(Stencil decal) 텍스쳐 이미지
+# refl : 반사(Reflection)에 대한 텍스쳐 이미지
+#     -type : 텍스쳐의 유형 설정 - 필수
+#     sphere : 구형 반사(Reflection) 텍스쳐
+#     cube_top | cube_bottom | cube_front | cube_back | cube_left | cube_right : 육면체 반사(Reflection) 텍스쳐를 사용하는 경우 - 각 면마다 텍스쳐 이미지를 정의하여 사용
+
+newmtl MyColor
+Ns 47.058824
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka texture_a.jpg
+map_Kd texture_d.jpg
+map_Ks texture_s.jpg
+map_bump texture_n.jpg
+map_d texture_mask.jpg
+disp texture_h.jpg
+refl -type sphere ref_sphere.jpg
+
+
