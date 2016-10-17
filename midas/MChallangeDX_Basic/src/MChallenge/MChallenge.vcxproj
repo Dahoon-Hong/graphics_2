@@ -88,12 +88,17 @@
   <ItemGroup>
     <ClInclude Include="DataTypeDef.h" />
     <ClInclude Include="MChallenge.h" />
+    <ClInclude Include="OBackGroundPlane.h" />
+    <ClInclude Include="ODXBuffer.h" />
     <ClInclude Include="SceneModel.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UIEventHandler.h" />
+    <ClInclude Include="umath.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MChallenge.cpp" />
+    <ClCompile Include="OBackGroundPlane.cpp" />
+    <ClCompile Include="ODXBuffer.cpp" />
     <ClCompile Include="SceneModel.cpp" />
     <ClCompile Include="Texture.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>

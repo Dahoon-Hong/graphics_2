@@ -1,0 +1,96 @@
+# Blender MTL File: 'template.blend'
+# Material Count: 8
+
+newmtl m_scorpion_blade
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_headtail_d.png
+map_Ks t_scorpion_headtail_s.png
+map_bump t_scorpion_headtail_n.png
+
+newmtl m_scorpion_eye
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_eye_d.png
+
+newmtl m_scorpion_headRingA
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_headtail_d.png
+map_Ks t_scorpion_headtail_s.png
+map_bump t_scorpion_headtail_n.png
+
+newmtl m_scorpion_headRingB
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_headtail_d.png
+map_Ks t_scorpion_headtail_s.png
+map_bump t_scorpion_headtail_n.png
+
+newmtl m_scorpion_limb
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_limb_d.png
+map_Ks t_scorpion_limb_s.png
+map_bump t_scorpion_limb_n.png
+
+newmtl m_scorpion_saw
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_saw_d.png
+map_Ks t_scorpion_saw_m.png
+map_bump t_scorpion_saw_n.png
+
+newmtl mi_scorpion_headtail
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_headtail_d.png
+map_Ks t_scorpion_headtail_s.png
+map_bump t_scorpion_headtail_n.png
+
+newmtl mi_scorpion_torso
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_scorpion_torso_d.png
+map_Ks t_scorpion_torso_s.png
+map_bump t_scorpion_torso_n.png

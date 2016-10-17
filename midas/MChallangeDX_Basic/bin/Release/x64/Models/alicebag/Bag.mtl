@@ -1,0 +1,15 @@
+# 
+# 
+newmtl Alice_Wake_bag
+Ns 96.078431
+Ka 0.050000 0.050000 0.050000
+Kd 0.640000 0.640000 0.640000
+Ks 0.100000 0.100000 0.100000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd alice_bag_d.png
+map_Ks alice_bag_s.png
+map_bump alice_bag_n.png
+
+

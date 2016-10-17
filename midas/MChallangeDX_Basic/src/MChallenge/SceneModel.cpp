@@ -67,6 +67,16 @@ bool CSceneModel::MakeVBOInfo()
 	float fRangeZ = m_tAABB.arMax[2] - m_tAABB.arMin[2];
 	m_fResizeFactor = MODEL_RANGE / max(max( fRangeX, fRangeY ), fRangeZ);
 
+	m_tAABB.arMax[0] = ( m_tAABB.arMax[0] - m_tAABB.arCen[0] ) * m_fResizeFactor;
+	m_tAABB.arMax[1] = ( m_tAABB.arMax[1] - m_tAABB.arCen[1] ) * m_fResizeFactor;
+	m_tAABB.arMax[2] = ( m_tAABB.arMax[2] - m_tAABB.arCen[2] ) * m_fResizeFactor;
+
+	
+	m_tAABB.arMin[0] = ( m_tAABB.arMin[0] - m_tAABB.arCen[0] ) * m_fResizeFactor;
+	m_tAABB.arMin[1] = ( m_tAABB.arMin[1] - m_tAABB.arCen[1] ) * m_fResizeFactor;
+	m_tAABB.arMin[2] = ( m_tAABB.arMin[2] - m_tAABB.arCen[2] ) * m_fResizeFactor;
+
+
 	GenerateModelRecursive( m_aiScene->mRootNode );
 
 	return true;
@@ -76,12 +86,12 @@ bool CSceneModel::MakeRasterState()
 	D3D11_RASTERIZER_DESC rasterDesc;
 
 	rasterDesc.AntialiasedLineEnable = false;
-	rasterDesc.CullMode = D3D11_CULL_NONE;
+	rasterDesc.CullMode = D3D11_CULL_FRONT;
 	rasterDesc.DepthBias = 0;
 	rasterDesc.DepthBiasClamp = 0.0f;
 	rasterDesc.DepthClipEnable = true;
 	rasterDesc.FillMode = D3D11_FILL_SOLID;
-	rasterDesc.FrontCounterClockwise = true;
+	rasterDesc.FrontCounterClockwise = TRUE;
 	rasterDesc.MultisampleEnable = TRUE;
 	rasterDesc.ScissorEnable = false;
 	rasterDesc.SlopeScaledDepthBias = 0.0f;
@@ -98,6 +108,7 @@ bool CSceneModel::MakeRasterState()
 	blendStateDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	blendStateDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
 	blendStateDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+
 	blendStateDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
 	blendStateDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_DEST_ALPHA;
 	blendStateDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
@@ -162,6 +173,7 @@ bool CSceneModel::MakeVBOBuffer( int VertexCount, int IdxCount, TDrawVertexType 
 
 bool CSceneModel::MakeAABB( const aiNode * pNode )
 {
+	
 	assert( pNode );
 	// 모델 파일의 디렉터리 경로
 	const std::string loaddir = m_strPath.substr( 0, m_strPath.find_last_of( "/\\" ) );
@@ -249,6 +261,7 @@ bool CSceneModel::GenerateModelRecursive( const aiNode* pNode )
 			hasOpacityValue = true;
 
 			pTMaterial->Opacity = opacity;
+
 			// TODO : 렌더링 Material 투명도 데이터 생성
 		}
 
@@ -293,6 +306,8 @@ bool CSceneModel::GenerateModelRecursive( const aiNode* pNode )
 			pTMaterial->Specular.z = specularColor.b;
 			pTMaterial->Specular.w = specularColor.a;
 		}
+
+		RGB(255,0,0);
 
 		// Material Shininess
 		unsigned int shininessmax = 1;
@@ -453,6 +468,8 @@ bool CSceneModel::GenerateModelRecursive( const aiNode* pNode )
 				{
 					// 정점에 Color 정보가 있는 경우
 					const aiColor4D color = pMesh->mColors[0][dataIndex];
+
+
 				}
 
 				if ( pMesh->mNormals != nullptr )
@@ -468,18 +485,31 @@ bool CSceneModel::GenerateModelRecursive( const aiNode* pNode )
 				{
 					// 정점에 Texture coordinate 정보가 있는 경우
 					const aiVector3D texcoord = pMesh->mTextureCoords[0][dataIndex];
+
+					arVertex[dataIndex].texture[0] = texcoord.x;
+					arVertex[dataIndex].texture[1] = texcoord.y;
+
 				}
 
 				if ( pMesh->mTangents != nullptr )
 				{
 					// 정점에 Tangent 정보가 있는 경우
 					const aiVector3D tangent = pMesh->mTangents[dataIndex];
+
+					arVertex[dataIndex].tangent[0] = tangent.x;
+					arVertex[dataIndex].tangent[1] = tangent.y;
+					arVertex[dataIndex].tangent[2] = tangent.z;
+
 				}
 
 				if ( pMesh->mBitangents != nullptr )
 				{
 					// 정점에 Bitangent 정보가 있는 경우
 					const aiVector3D bitangent = pMesh->mBitangents[dataIndex];
+
+					arVertex[dataIndex].bitangent[0] = bitangent.x;
+					arVertex[dataIndex].bitangent[1] = bitangent.y;
+					arVertex[dataIndex].bitangent[2] = bitangent.z;
 				}
 			}
 		}

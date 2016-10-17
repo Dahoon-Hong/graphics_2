@@ -1,0 +1,68 @@
+#
+#
+#
+
+newmtl rdmobj00.006 메시_m_scorpion_eye
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_eye_d.png
+
+newmtl rdmobj01 메시_mi_scorpion_headtail
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_headtail_d.png
+
+newmtl rdmobj02 메시_m_scorpion_headRingA
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_headtail_d.png
+
+newmtl rdmobj03 메시_m_scorpion_headRingB
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_headtail_d.png
+
+newmtl rdmobj04 메시_m_scorpion_blade
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_headtail_d.png
+
+newmtl rdmobj05 메시_m_scorpion_saw
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_saw_d.png
+
+newmtl rdmobj06 메시_m_scorpion_limb
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_limb_d.png
+
+newmtl rdmobj07 메시_mi_scorpion_torso
+illum 2
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ns 96.078430
+map_Kd t_scorpion_torso_d.png
+

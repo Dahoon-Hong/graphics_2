@@ -72,4 +72,9 @@ struct TCameraInfo
 	float fAspect;
 	float fNearPlane;
 	float fFarPlane;
+
+	float max[3];
+	float min[3];
+
+
 };

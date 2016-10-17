@@ -26,6 +26,8 @@ struct TDrawVertexType
 	float position[3];
 	float normal[3];
 	float texture[2];
+	float tangent[3];
+	float bitangent[3];
 };
 
 struct TMaterialInfo
@@ -60,9 +62,6 @@ struct TMaterialInfo
 	CTexture* pAlphaTex;
 	CTexture* pNormalTex;
 };
-
-
-
 struct TVBOInfo
 {
 	ID3D11Buffer *VertexBuffer;
@@ -96,6 +95,7 @@ protected:
 	bool MakeVBOBuffer( int VertexCount, int IdxCount, TDrawVertexType * arVertex, unsigned int* arIdx, TVBOInfo* pTVBO );
 	bool MakeRasterState();
 	bool MakeAABB( const aiNode * pNode );
+	
 
 	ID3D11Device* m_pDevice;
 	const aiScene * m_aiScene;	

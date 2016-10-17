@@ -30,6 +30,9 @@
     <ClInclude Include="DataTypeDef.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="umath.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Texture.cpp">

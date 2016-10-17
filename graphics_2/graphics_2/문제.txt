@@ -1,0 +1,65 @@
+응용		:	2차원 도형편집기(CAD? 그림판?) 
+	! 방향성
+	필수기능 new, save, open 
+		입력 -> 2차원 circle triangle renctangle
+		입력방법은 상관없나보네
+	추가 -> 입력기능 다양화, 도형 텍스트 추가
+		이동, 복사
+
+
+undo redo는 중요한ㄱ...
+text import 
+GUI, Algorithm, Data processing,
+
+그래픽스 	: 	가상쇼핑몰을 위한 3D 모델뷰어?
+	조명, 배경, panning, 렌더링 수치
+
+	3d모델 렌더링, 편리한 뷰어, 다양한 렌더링 기법(bump, reflection, global, )
+	제공환경 : 4가지 모델, sample viewer ( obj file )
+		phong 모델
+
+	이미지로더 - .texture
+	
+	기본과제 -> 모델 렌더링(텍스쳐르 적절히 표현, obj파일 내용 활용) -> 힌드가 있따
+	panning, zomming, zoomout, rotate
+	광원
+
+	기본과제를 충실히 다해야함(배점 높음)
+
+	추가기능? 좀더 사실적 과장, 사용성 up, 기타
+
+최종제출
+
+	ppt, 
+
+발표시간 10 qna 5
+발표용 노트북있긴한데 개인 노트북을 이용(발표시 심사관에게 시연용 노트북 1대씩 제출)
+
+
+source code, runnable exe(project여도 상관없음)
+
+usb 제공.
+
+주의사항(참고)
+1. 필수 기능의 명세가 상세하지 않음 -->  가정하고 하면됨
+2. 오픈소스, lib 사용가능
+3. unreal unity x
+4. 
+
+
+
+평가기준 -> 완벽성, 창의성
+
+
+외부협조 x
+전화통화 - 행사장 밖 로비에서만 가능
+행사장 이탈 x
+모든 일정에 참여해야함
+음식물 반입 주의(노트북 파손 주의)
+흡연 X
+티셔츠, 명찰 착용해야함.
+
+
+
+
+

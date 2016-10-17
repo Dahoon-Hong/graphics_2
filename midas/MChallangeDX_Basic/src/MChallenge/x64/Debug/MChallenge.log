@@ -1,34 +1,18 @@
-﻿빌드 시작: 2016-05-28 오후 2:52:15
-     1>2 노드의 "C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\src\MChallenge\MChallenge.vcxproj" 프로젝트(Build 대상)입니다.
-     1>InitializeBuildStatus:
-         "AlwaysCreate"이(가) 지정되었기 때문에 "x64\Debug\MChallenge.unsuccessfulbuild"을(를) 만들고 있습니다.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I../../include /Zi /nologo /W3 /WX- /sdl /Od /GL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt MChallenge.cpp
-         MChallenge.cpp
-       Link:
+﻿빌드 시작: 2016-05-29 오전 9:40:15
+     1>2 노드의 "C:\Users\dahoon\Desktop\midas\graphics_2\ohz\trunk\MChallangeDX_Basic\src\MChallenge\MChallenge.vcxproj" 프로젝트(Build 대상)입니다.
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"../../bin/Debug/x64\MChallenge.exe" /INCREMENTAL /NOLOGO /LIBPATH:../../lib/Common /LIBPATH:../../lib/Common/Debug/x64 /LIBPATH:../../lib/Debug/x64 d3dx11.lib opencv_world310.lib "assimp-vc110-mt.lib" DXUT.lib DXUTOpt.lib d3dcompiler.lib usp10.lib dxguid.lib winmm.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"../../bin/Debug/x64\MChallenge.pdb" /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../../bin/Debug/x64\MChallenge.lib" /MACHINE:X64 x64\Debug\MChallenge.obj
          x64\Debug\SceneModel.obj
          x64\Debug\Texture.obj
          x64\Debug\UIEventHandler.obj
      1>LINK : warning LNK4075: '/INCREMENTAL'이(가) '/LTCG' 사양으로 인해 무시됩니다.
-         코드를 생성하고 있습니다.
-         코드를 생성했습니다.
-     1>DXUT.lib(DXUT.obj) : warning LNK4099: 'dxut.pdb' PDB를 'DXUT.lib(DXUT.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxut.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUT.lib(DXUTDevice11.obj) : warning LNK4099: 'dxut.pdb' PDB를 'DXUT.lib(DXUTDevice11.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxut.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUT.lib(DXUTmisc.obj) : warning LNK4099: 'dxut.pdb' PDB를 'DXUT.lib(DXUTmisc.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxut.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUT.lib(DXErr.obj) : warning LNK4099: 'dxut.pdb' PDB를 'DXUT.lib(DXErr.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxut.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUT.lib(DDSTextureLoader.obj) : warning LNK4099: 'dxut.pdb' PDB를 'DXUT.lib(DDSTextureLoader.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxut.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUT.lib(Screengrab.obj) : warning LNK4099: 'dxut.pdb' PDB를 'DXUT.lib(Screengrab.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxut.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUT.lib(WICTextureLoader.obj) : warning LNK4099: 'dxut.pdb' PDB를 'DXUT.lib(WICTextureLoader.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxut.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUTOpt.lib(DXUTgui.obj) : warning LNK4099: 'dxutopt.pdb' PDB를 'DXUTOpt.lib(DXUTgui.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxutopt.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUTOpt.lib(DXUTres.obj) : warning LNK4099: 'dxutopt.pdb' PDB를 'DXUTOpt.lib(DXUTres.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxutopt.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-     1>DXUTOpt.lib(SDKmisc.obj) : warning LNK4099: 'dxutopt.pdb' PDB를 'DXUTOpt.lib(SDKmisc.obj)' 또는 'C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\bin\Debug\x64\dxutopt.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-         MChallenge.vcxproj -> C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\src\MChallenge\../../bin/Debug/x64\MChallenge.exe
-       FinalizeBuildStatus:
-         "x64\Debug\MChallenge.unsuccessfulbuild" 파일을 삭제하고 있습니다.
-         "x64\Debug\MChallenge.lastbuildstate"에 연결(touching)하고 있습니다.
-     1>"C:\Users\Nada\Desktop\graphics_2\midas\MChallangeDX_Basic\src\MChallenge\MChallenge.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+     1>MChallenge.obj : error LNK2001: "public: bool __cdecl OBackGroundPlane::Render(void)" (?Render@OBackGroundPlane@@QEAA_NXZ) 외부 기호를 확인할 수 없습니다.
+     1>MChallenge.obj : error LNK2001: "public: bool __cdecl OBackGroundPlane::Create(struct ID3D11Device *,struct ID3D11DeviceContext *)" (?Create@OBackGroundPlane@@QEAA_NPEAUID3D11Device@@PEAUID3D11DeviceContext@@@Z) 외부 기호를 확인할 수 없습니다.
+     1>MChallenge.obj : error LNK2001: "public: virtual __cdecl OBackGroundPlane::~OBackGroundPlane(void)" (??1OBackGroundPlane@@UEAA@XZ) 외부 기호를 확인할 수 없습니다.
+     1>MChallenge.obj : error LNK2001: "public: __cdecl OBackGroundPlane::OBackGroundPlane(void)" (??0OBackGroundPlane@@QEAA@XZ) 외부 기호를 확인할 수 없습니다.
+     1>../../bin/Debug/x64\MChallenge.exe : fatal error LNK1120: 4개의 확인할 수 없는 외부 참조입니다.
+     1>"C:\Users\dahoon\Desktop\midas\graphics_2\ohz\trunk\MChallangeDX_Basic\src\MChallenge\MChallenge.vcxproj" 프로젝트를 빌드했습니다(Build 대상). - 실패
 
-빌드했습니다.
+빌드하지 못했습니다.
 
-경과 시간: 00:00:05.41
+경과 시간: 00:00:00.62
